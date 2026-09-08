@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泡泡玛特热搜评论数据分析平台</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+<div class="header">
+    <h1>POP MART 泡泡玛特 热搜评论数据分析平台</h1>
+    <p>Hot Search Comment Analytics Dashboard | 数据来源: 微博、小红书、抖音热搜公开数据</p>
+</div>
+<div class="nav">
+    <button class="active" onclick="switchTab('overview')">综合概览</button>
+    <button onclick="switchTab('ip')">IP热度分析</button>
+    <button onclick="switchTab('sentiment')">情感分析</button>
+    <button onclick="switchTab('platform')">平台分布</button>
+    <button onclick="switchTab('user')">用户画像</button>
+    <button onclick="switchTab('hotsearch')">热搜趋势</button>
+    <button onclick="switchTab('comments')">评论精选</button>
+</div>
+<div class="container">
+    <!-- 综合概览 -->
+    <div id="overview" class="section active">
+        <div class="kpi-row">
+            <div class="kpi-card"><div class="value" id="kpi-total-search">--</div><div class="label">热搜总搜索量</div></div>
+            <div class="kpi-card"><div class="value" id="kpi-total-comments">--</div><div class="label">评论总数</div></div>
+            <div class="kpi-card"><div class="value" id="kpi-positive-rate">--</div><div class="label">正面情感占比</div></div>
+            <div class="kpi-card"><div class="value" id="kpi-top-ip">--</div><div class="label">最热IP</div></div>
+        </div>
+        <div class="chart-grid">
+            <div class="chart-card full-width"><h3>各IP热搜搜索量排名</h3><div id="chart-ip-bar" class="chart-box"></div></div>
+            <div class="chart-card"><h3>评论情感分布</h3><div id="chart-sentiment-pie" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各平台评论数对比</h3><div id="chart-platform-bar" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- IP热度分析 -->
+    <div id="ip" class="section">
+        <div class="chart-grid">
+            <div class="chart-card"><h3>IP品牌价值指数 vs 月增长率</h3><div id="chart-ip-scatter" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各IP总评论数</h3><div id="chart-ip-comments-bar" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各IP情感得分</h3><div id="chart-ip-sentiment-radar" class="chart-box"></div></div>
+            <div class="chart-card"><h3>IP综合表现热力图</h3><div id="chart-ip-heatmap" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- 情感分析 -->
+    <div id="sentiment" class="section">
+        <div class="chart-grid">
+            <div class="chart-card full-width"><h3>各话题类别情感倾向分布</h3><div id="chart-sentiment-stacked" class="chart-box"></div></div>
+            <div class="chart-card"><h3>正面评论平均点赞 vs 负面评论平均点赞</h3><div id="chart-sentiment-likes" class="chart-box"></div></div>
+            <div class="chart-card"><h3>话题情感热力图</h3><div id="chart-sentiment-heatmap" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- 平台分布 -->
+    <div id="platform" class="section">
+        <div class="chart-grid">
+            <div class="chart-card"><h3>各平台评论数与互动数据</h3><div id="chart-platform-compare" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各平台活跃用户占比</h3><div id="chart-platform-pie" class="chart-box"></div></div>
+            <div class="chart-card full-width"><h3>各平台高峰时段活跃度</h3><div id="chart-platform-heatmap" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- 用户画像 -->
+    <div id="user" class="section">
+        <div class="chart-grid">
+            <div class="chart-card"><h3>各年龄段评论数与月均消费</h3><div id="chart-user-age" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各年龄段复购率</h3><div id="chart-user-repurchase" class="chart-box"></div></div>
+            <div class="chart-card"><h3>性别偏好IP分布</h3><div id="chart-user-gender" class="chart-box"></div></div>
+            <div class="chart-card"><h3>用户消费力分布</h3><div id="chart-user-spending" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- 热搜趋势 -->
+    <div id="hotsearch" class="section">
+        <div class="chart-grid">
+            <div class="chart-card full-width"><h3>热搜关键词搜索量时间线</h3><div id="chart-hotsearch-timeline" class="chart-box"></div></div>
+            <div class="chart-card"><h3>热搜话题类别占比</h3><div id="chart-hotsearch-category" class="chart-box"></div></div>
+            <div class="chart-card"><h3>各平台热搜数分布</h3><div id="chart-hotsearch-platform" class="chart-box"></div></div>
+        </div>
+    </div>
+    <!-- 评论精选 -->
+    <div id="comments" class="section">
+        <div class="chart-grid">
+            <div class="chart-card"><h3>热门评论 TOP10 (按点赞)</h3><div class="comment-list" id="top-comments"></div></div>
+            <div class="chart-card"><h3>各平台评论情感对比</h3><div id="chart-comment-sentiment" class="chart-box"></div></div>
+        </div>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>

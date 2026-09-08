@@ -1,0 +1,4 @@
+platform,comment_count,avg_likes,avg_replies,peak_hour,dominant_sentiment,active_user_ratio
+微博,42000,4200,220,15:00,positive,0.68
+小红书,35000,3100,165,20:00,positive,0.72
+抖音,28000,6800,350,12:00,positive,0.65
